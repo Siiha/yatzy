@@ -2,6 +2,7 @@ from random import randint
 from collections import Counter
 from os import environ
 import sqlite3
+
 dice = lambda: randint(1, 6)
 int_input = lambda x: int(input(x))
 choose = lambda: input(
@@ -40,6 +41,7 @@ class player:
             if self.minutes[i] != None:
                 continue
             print(f"{i} : {self.options[i]}")
+
     def potential(self):
         c = Counter(self.row)
         self.options = {str(i): i * self.row.count(i) for i in range(1, 7)}
@@ -54,9 +56,7 @@ class player:
                         if i != j
                     ]
                 ),
-                "triple number": max(
-                    [i * 3 if c[i] >= 3 else 0 for i in range(1, 7)]
-                ),
+                "triple number": max([i * 3 if c[i] >= 3 else 0 for i in range(1, 7)]),
                 "four number": max([i * 4 if c[i] >= 4 else 0 for i in range(1, 7)]),
                 "small straight": 15 if set(range(1, 6)) == set(self.row) else 0,
                 "large straight": 20 if set(range(2, 7)) == set(self.row) else 0,
@@ -82,13 +82,19 @@ class player:
             if self.minutes[i] != None:
                 continue
             print(f"{i} : {self.options[i]}")
+
     def final(self):
         self.score = sum(self.minutes.values)
+
     def save_score(self):
-        conn = sqlite3.connect('yatzy.db')
+        conn = sqlite3.connect("yatzy.db")
         cur = conn.cursor()
-        cur.execute(f"Insert into scores(name,score) Values('{self.name}',{self.score});")
+        cur.execute(
+            f"Insert into scores(name,score) Values('{self.name}',{self.score});"
+        )
         conn.commit()
+
+
 p = player(environ.get("USERNAME"))
 t = 0
 while t < 15:
