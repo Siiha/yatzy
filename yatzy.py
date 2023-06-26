@@ -99,7 +99,7 @@ class player:
 p = player(environ.get("USERNAME"))
 t = 0
 while t < 15:
-    t += i
+    t += 1
     p.roll()
     print(p.row)
     for i in range(2):
