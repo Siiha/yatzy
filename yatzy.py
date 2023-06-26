@@ -56,9 +56,9 @@ class player:
                     ]
                 ),
                 "triple number": max(
-                    [i * c[i] if c[i] == 3 else 0 for i in range(1, 7)]
+                    [i * 3 if c[i] >= 3 else 0 for i in range(1, 7)]
                 ),
-                "four number": max([i * c[i] if c[i] == 4 else 0 for i in range(1, 7)]),
+                "four number": max([i * 4 if c[i] >= 4 else 0 for i in range(1, 7)]),
                 "small straight": 15 if set(range(1, 6)) == set(self.row) else 0,
                 "large straight": 20 if set(range(2, 7)) == set(self.row) else 0,
                 "full house": sum(self.row)
