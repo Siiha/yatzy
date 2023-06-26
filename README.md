@@ -5,11 +5,10 @@ This program is a simple simulation of the dice game called Yatzy. The player ro
 ## Instructions
 
 1. Run the program by executing the code in the file `yatzy.py`.
-2. Enter the player's name when prompted by the program.
-3. During each round, the program will roll the dice and display the results.
-4. You can choose to keep some of the dice and roll the rest again.
-5. Select the category where you want to mark your points.
-6. At the end of the game, you will receive the final score.
+2. During each round, the program will roll the dice and display the results.
+3. You can choose to keep some of the dice and roll the rest again.
+4. Select the category where you want to mark your points.
+5. At the end of the game, you will receive the final score.
 
 ## Program Structure
 
