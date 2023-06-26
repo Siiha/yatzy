@@ -125,4 +125,4 @@ while t < 15:
     print()
 p.final()
 print(p.score)
-p.save()
+p.save_score()
