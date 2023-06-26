@@ -3,6 +3,10 @@ from collections import Counter
 from os import environ
 
 dice = lambda: randint(1, 6)
+int_input = lambda x: int(input(x))
+choose = lambda: input(
+    "Which point in minutes do you want to fill in? You can only select those whose value is None.: "
+)
 
 
 class player:
@@ -35,14 +39,14 @@ class player:
         for i in self.options:
             if self.minutes[i] != None:
                 continue
-            print(i + ":" + str(self.options[i]))
+            print(f"{i} : {self.options[i]}")
 
     def potential(self):
         c = Counter(self.row)
         self.options = {str(i): i * self.row.count(i) for i in range(1, 7)}
         self.options.update(
             {
-                "pair": max([i * c[i] if c[i] == 2 else 0 for i in range(1, 7)]),
+                "pair": max([i * 2 if c[i] >= 2 else 0 for i in range(1, 7)]),
                 "two pairs": max(
                     [
                         i * c[i] + j * c[j] if c[i] >= 2 <= c[j] else 0
@@ -68,9 +72,7 @@ class player:
     def mark(self, choice):
         while self.minutes[choice] != None:
             print("You can't choose that.")
-            choice = input(
-                "Which point in minutes do you want to fill in? You can only select those whose value is None.: "
-            )
+            choice = choose()
         self.minutes[choice] = self.options[choice]
 
     def change(self, l):
@@ -80,7 +82,7 @@ class player:
         for i in self.options:
             if self.minutes[i] != None:
                 continue
-            print(i + ":" + str(self.options[i]))
+            print(f"{i} : {self.options[i]}")
 
     def final(self):
         self.score = sum(self.minutes.values)
@@ -93,9 +95,9 @@ while t < 15:
     p.roll()
     print(p.row)
     for i in range(2):
-        if int(input("shall we take the throw already? 1 or 0: ")):
+        if int_input("shall we take the throw already? 1 or 0: "):
             break
-        x = int(input("Throw all or just some 1 or 0: "))
+        x = int_input("Throw all or just some 1 or 0: ")
         if x:
             p.roll()
             print(p.row)
@@ -110,12 +112,8 @@ while t < 15:
             )
             print(p.row)
     for i in p.minutes:
-        print(i + ":" + str(p.minutes[i]))
-    p.mark(
-        input(
-            "Which point in minutes do you want to fill in? You can only select those whose value is None.: "
-        )
-    )
+        print(f"{i} : {p.minutes[i]}")
+    p.mark(choose())
 
     print()
 p.final()
