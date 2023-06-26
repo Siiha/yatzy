@@ -86,7 +86,7 @@ class player:
     def final(self):
         self.score = 0
         for i in self.minutes.values():
-            self.score += 1
+            self.score += i
 
     def save_score(self):
         conn = sqlite3.connect("yatzy.db")
