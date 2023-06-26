@@ -45,7 +45,7 @@ class player:
 			})
 	def mark(self,choice):
 		while self.minutes[choice] != None:
-			print("You can't choice that.")
+			print("You can't choose that.")
 			choice = input("Which point in minutes do you want to fill in? You can only select those whose value is None.: ")
 		self.minutes[choice]=self.options[choice]
 	def change(self,l):
