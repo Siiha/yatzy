@@ -84,14 +84,15 @@ class player:
             print(f"{i} : {self.options[i]}")
 
     def final(self):
-        self.score = sum(self.minutes.values)
+        self.score = 0
+        for i in self.minutes.values():
+            self.score += 1
 
     def save_score(self):
         conn = sqlite3.connect("yatzy.db")
         cur = conn.cursor()
-        cur.execute(
-            f"Insert into scores(name,score) Values('{self.name}',{self.score});"
-        )
+        cur.execute("Insert into scores(name,score) Values(?,?);",(self.name,self.score))
+
         conn.commit()
 
 
