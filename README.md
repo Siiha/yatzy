@@ -3,8 +3,8 @@
 This program is a simple simulation of the dice game called Yatzy. The player rolls five dice and tries to achieve different combinations to score points. The player's score can be saved to a SQLite database.
 
 ## Instructions
-
-1. Run the program by executing the code in the file `main.py`.
+1. Go to the yatzy folder.
+1. Run the program by executing the code in the file `yatzy.py`.
 2. During each round, the program will roll the dice and display the results.
 3. You can choose to keep some of the dice and roll the rest again.
 4. Select the category where you want to mark your points.
